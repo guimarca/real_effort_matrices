@@ -1,0 +1,55 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Transcription task {{ subsession.round_number }}/{{ Constants.num_rounds }}
+{% endblock %}
+
+{% block content %}
+
+    <p>
+        Please sum the highest numbers in both matrices.
+    </p>
+
+    <p>
+        Number of correct answers so far: {{ player.num_correct }}
+    </p>
+
+    <div class="row">
+        <div class="col-md-6 col-md-offset-1 text-center">
+            <table border="1">
+                {% for row in player.m_left %}
+                <tr>
+                    {% for n in row %}
+                        <td style="padding: 5px">{{ n|floatformat:"0" }}</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div class="col-md-5 text-center">
+            <table border="1">
+                {% for row in player.m_right %}
+                <tr>
+                    {% for n in row %}
+                        <td style="padding: 5px">{{ n|floatformat:"0" }}</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+
+    <p>
+        {% formfield player.answer label="Your answer" %} (Sol: {{ player.solution }})
+    </p>
+
+    {% next_button %}
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+
+</script>
+{% endblock %}
